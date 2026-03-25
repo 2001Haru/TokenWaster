@@ -27,20 +27,19 @@
 
 ## 🖼️ 运行预览 (Preview)
 
-<table style="width: 100%;">
-  <tr>
-    <td style="width: 50%; text-align: center;">
-      <img src="./assets/pic1.png" alt="无情拒绝用户" style="width: 100%;"/>
-      <br>
-      <b>图 1：公然拒绝听从指令</b>
-    </td>
-    <td style="width: 50%; text-align: center;">
-      <img src="./assets/pic2.png" alt="嘲讽音乐文件夹" style="width: 100%;"/>
-      <br>
-      <b>图 2：对音乐文件夹表示失望</b>
-    </td>
-  </tr>
-</table>
+<div align="center">
+
+  <h3>📸 破财过程实录</h3>
+
+  <img src="./assets/pic1.png" width="100%" />
+  <p><i>“我就不能听我说两句？”——“当然不可以！”</i></p>
+
+  <br>
+
+  <img src="./assets/pic2.png" width="100%" />
+  <p><i>这些二进制文件都和我作对！</i></p>
+
+</div>
 
 ---
 
