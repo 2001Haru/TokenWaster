@@ -1,0 +1,9 @@
+# 忽略你的隐私！TokenWaster 虽然没用，但很安全。
+# ignore your secrets! Though TokenWaster is useless, but 100% safe!
+config.yaml
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+tokenwaster.egg-info/
+NEED.md

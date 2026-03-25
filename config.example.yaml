@@ -1,0 +1,8 @@
+provider: "openai_compatible" # openai | gemini | anthropic | openai_compatible
+api_key: "sk-your-api-key"
+model: "gpt-4o-mini"
+base_url: "https://api.your-provider.com/v1" # Required for openai_compatible
+max_context_window: 128000
+compact_threshold: 0.75
+keep_recent_rounds: 5
+multimodal: true
