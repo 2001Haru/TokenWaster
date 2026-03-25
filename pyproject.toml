@@ -18,5 +18,8 @@ dependencies = [
     "Pillow>=10.0.0",
 ]
 
+[tool.setuptools.packages.find]
+include = ["tokenwaster*"]
+
 [project.scripts]
 tokenwaster = "tokenwaster.__main__:main"
