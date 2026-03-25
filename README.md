@@ -25,6 +25,25 @@
 
 ---
 
+## 🖼️ 运行预览 (Preview)
+
+<table style="width: 100%;">
+  <tr>
+    <td style="width: 50%; text-align: center;">
+      <img src="./assets/pic1.png" alt="无情拒绝用户" style="width: 100%;"/>
+      <br>
+      <b>图 1：公然拒绝听从指令</b>
+    </td>
+    <td style="width: 50%; text-align: center;">
+      <img src="./assets/pic2.png" alt="嘲讽音乐文件夹" style="width: 100%;"/>
+      <br>
+      <b>图 2：对音乐文件夹表示失望</b>
+    </td>
+  </tr>
+</table>
+
+---
+
 ## ✨ 核心“特色” (Features)
 
 💸 **Token 焚烧炉 (Token Incinerator)** 

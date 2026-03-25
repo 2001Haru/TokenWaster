@@ -27,6 +27,15 @@ In summary: It is **Completely Useless**, but **Completely Harmless**.
 
 ---
 
+## 🖼️ Preview
+
+<div align="center">
+  <img src="./assets/pic3_en.png" width="600" />
+  <p><i>Picture 3：TokenWaster roasts the user</i></p>
+</div>
+
+---
+
 ## ✨ Core "Features"
 
 💸 **Token Incinerator** 
