@@ -37,7 +37,8 @@ class TokenWasterAgent:
         return SYSTEM_PROMPT_TEMPLATE.format(
             total_tokens=self.memory.total_tokens_used,
             compact_history=self.memory.compact_history or "(No history yet)",
-            read_files=read_files_str
+            read_files=read_files_str,
+            desktop_comment_path=get_desktop_path()
         )
 
     def _reset_messages(self, system_content: str):
