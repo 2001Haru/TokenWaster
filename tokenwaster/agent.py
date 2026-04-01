@@ -1,4 +1,5 @@
 import json
+import re
 from typing import Optional, Awaitable, Callable
 from rich.console import Console
 from .config import Config, get_desktop_path
@@ -46,6 +47,41 @@ class TokenWasterAgent:
 
     def add_user_interjection(self, text: str):
         self.user_message_queue.append(text)
+
+    @staticmethod
+    def _is_tool_summary_text(content: str | None) -> bool:
+        if not content or not isinstance(content, str):
+            return False
+        text = content.strip()
+        # Filter compatibility artifacts like:
+        # [Tool calls: list_files, list_files]
+        return bool(re.fullmatch(r"\[Tool calls(?::[^\]]*)?\]", text))
+
+    @staticmethod
+    def _canonical_args(arguments: str) -> str:
+        if not isinstance(arguments, str):
+            return "{}"
+        try:
+            parsed = json.loads(arguments)
+            return json.dumps(parsed, ensure_ascii=False, sort_keys=True)
+        except Exception:
+            return arguments.strip()
+
+    def _dedupe_tool_calls(self, tool_calls: list[dict] | None) -> list[dict] | None:
+        if not tool_calls:
+            return tool_calls
+        deduped = []
+        seen = set()
+        for tc in tool_calls:
+            func = tc.get("function", {}) if isinstance(tc, dict) else {}
+            name = func.get("name")
+            args = self._canonical_args(func.get("arguments", "{}"))
+            key = (name, args)
+            if key in seen:
+                continue
+            seen.add(key)
+            deduped.append(tc)
+        return deduped
 
     async def _handle_compaction(self):
         self.console.print("\n[bold yellow]⚠️ Reached Context Limit! Compacting memory...[/bold yellow]")
@@ -99,6 +135,9 @@ class TokenWasterAgent:
         schemas = self.registry.get_schemas()
         
         content, tool_calls = await self.llm_client.chat(self.messages, schemas)
+        tool_calls = self._dedupe_tool_calls(tool_calls)
+        if self._is_tool_summary_text(content):
+            content = None
         
         # 5. Handle response
         assistant_msg = {"role": "assistant"}
@@ -112,8 +151,10 @@ class TokenWasterAgent:
                 # Some APIs require content to be present even if null, some require it not to be
                 # We normalize to avoiding empty content
                 assistant_msg["content"] = None
-                
-        self.messages.append(assistant_msg)
+
+        # Avoid appending empty assistant messages.
+        if ("content" in assistant_msg and assistant_msg["content"] is not None) or assistant_msg.get("tool_calls"):
+            self.messages.append(assistant_msg)
         
         # 6. Execute tools
         if tool_calls:

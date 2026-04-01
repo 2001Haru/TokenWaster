@@ -10,18 +10,21 @@ from tokenwaster.agent import TokenWasterAgent
 from tokenwaster.cli import CLIManager
 
 def create_llm_client(config: Config):
-    if config.provider in ["openai", "openai_compatible"]:
+    provider = Config.normalize_provider(config.provider)
+
+    if provider in ["openai", "openai_compatible"]:
         return OpenAIClient(
             api_key=config.api_key,
             model=config.model,
-            base_url=config.base_url
+            base_url=config.base_url,
+            max_rpm=config.max_rpm,
         )
-    elif config.provider == "gemini":
+    elif provider == "gemini":
         return GeminiClient(
             api_key=config.api_key,
             model=config.model
         )
-    elif config.provider == "anthropic":
+    elif provider == "anthropic":
         return AnthropicClient(
             api_key=config.api_key,
             model=config.model
@@ -43,7 +46,7 @@ async def async_main():
     
     try:
         config = Config.load(args.config)
-    except FileNotFoundError as e:
+    except (FileNotFoundError, ValueError) as e:
         console.print(f"[bold red]Configuration error:[/bold red] {str(e)}")
         return
         

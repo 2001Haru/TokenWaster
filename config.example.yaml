@@ -6,3 +6,4 @@ max_context_window: 128000
 compact_threshold: 0.75
 keep_recent_rounds: 5
 multimodal: true
+max_rpm: 18 # Optional. Proactive client-side limiter for OpenAI/OpenAI-compatible.

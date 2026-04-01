@@ -23,11 +23,11 @@ class GeminiClient(BaseLLMClient):
             parts = []
             content = msg.get("content")
             if isinstance(content, str):
-                parts.append(types.Part.from_text(content))
+                parts.append(types.Part.from_text(text=content))
             elif isinstance(content, list):
                 for item in content:
                     if item.get("type") == "text":
-                        parts.append(types.Part.from_text(item["text"]))
+                        parts.append(types.Part.from_text(text=item["text"]))
                     elif item.get("type") == "image_url":
                         # Simplistic conversion for base64 images
                         b64_data = item["image_url"]["url"].split("base64,")[-1]
