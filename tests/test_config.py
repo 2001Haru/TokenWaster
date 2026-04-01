@@ -7,7 +7,7 @@ def test_config_load_example():
     assert config.provider == "openai_compatible"
     assert config.max_context_window == 128000
     assert config.multimodal is True
-    assert config.max_rpm == 20
+    assert config.max_rpm == 18
 
 def test_get_desktop_path():
     path = get_desktop_path()

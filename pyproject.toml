@@ -20,3 +20,9 @@ dependencies = [
 
 [project.scripts]
 tokenwaster = "tokenwaster.__main__:main"
+
+[tool.setuptools.package-data]
+tokenwaster = ["assets/*.png"]
+
+[tool.setuptools.packages.find]
+include = ["tokenwaster*"]
