@@ -64,6 +64,7 @@ Are you ready to obliterate your token quota? Just a few steps to unlock hell mo
 
 ```bash
 # 1. Clone & Install 📦
+git clone https://github.com/2001Haru/TokenWaster.git
 cd TokenWaster
 pip install -e .
 

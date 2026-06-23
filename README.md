@@ -71,6 +71,7 @@
 
 ```bash
 # 1. 克隆代码 & 原地安装 📦
+git clone https://github.com/2001Haru/TokenWaster.git
 cd TokenWaster
 pip install -e .
 
